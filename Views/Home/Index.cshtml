@@ -1,0 +1,58 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div>
+    <div class="half">
+        <h1>Welcome to my Page</h1>
+    
+        <form asp-action="LogIn" asp-controler="Home" method="POST">
+            <label for="Email">Email:</label>
+            <input type="text" name="Email">
+            <br>
+    
+            <label for="Password">Password:</label>
+            <input type="password" name="Password">
+            <br>
+    
+            <input type="submit" value="Sign in">
+        </form>
+        
+        <p>@ViewBag.error</p>
+    
+    </div>
+
+
+    <div class="half">
+        @model Person
+        <form asp-action="Create" asp-controller="Home" method="POST">
+            <span asp-validation-for="FirstName"></span>
+            <label asp-for="FirstName">First Name:</label>
+            <input type="text" asp-for="FirstName">
+            <br>
+
+            <span asp-validation-for="LastName"></span>
+            <label asp-for="LastName">Last Name:</label>
+            <input type="text" asp-for="LastName">
+            <br>
+
+            <span asp-validation-for="Email"></span>
+            <label asp-for="Email">Email:</label>
+            <input type="text" asp-for="Email">
+            <br>
+            
+            <span asp-validation-for="Password"></span>
+            <label asp-for="Password">Password:</label>
+            <input type="Password" asp-for="Password">
+            <br>
+                
+            <span>@ViewBag.error</span>
+            <label for="ConfirmPass">Confirm Password:</label>
+            <input type="password" name="ConfirmPass">
+            <br>
+
+            <input type="submit" value="Register">
+        </form>
+    </div>
+
+</div>

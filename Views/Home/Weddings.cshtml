@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "About";
+}
+
+<div>
+    <h1>Welcome to Wedding Planner</h1>
+    <table>
+        <tr>
+            <th>Wedding</th>
+            <th>Date</th>
+            <th>Guests</th>
+            <th>Action</th>
+        </tr>
+        @foreach(var wed in @ViewBag.allWeddings){
+            <tr>
+                <td><a asp-area="" asp-controller="Wedding" asp-action="WeddingInfo" asp-route-id="@wed.WeddingID">@wed.Wedder1 & @wed.Wedder2</a></td>
+                <td>@wed.WeddingDate</td>
+                <td>@wed.UserWedd.Count</td>
+                @if(@wed.User == @ViewBag.user){                        <td><a asp-area="" asp-controller="Wedding" asp-action="Delete" asp-route-id="@wed.WeddingID">Delete</a></td>
+                }
+                else{ 
+                    bool contains = false;
+                    int registryId = 0;
+                    
+                    @foreach(var uw in @ViewBag.userWedd){
+                        @if(uw.Wedding == @wed){
+                            contains = true;
+                            registryId = uw.UserWeddingID;
+                            break;
+                        }
+                    }
+
+                    @if(contains){
+                        <td><a asp-area="" asp-controller="Wedding" asp-action="UNRSVP" asp-route-id="@registryId">Un-RSVP</a></td>
+                    }
+                    else{
+                        <td><a asp-area="" asp-controller="Wedding" asp-action="RSVP" asp-route-id="@wed.WeddingID">RSVP</a></td>
+                    }
+                }
+                
+
+            </tr>
+        }
+    </table>
+
+    <a asp-area="" asp-controller="Wedding" asp-action="AddNewWedding"><button>Add a Wedding</button></a>
+</div>

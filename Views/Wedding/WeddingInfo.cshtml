@@ -1,0 +1,10 @@
+<div>
+    <h1>@ViewBag.wedding.Wedder1 and @ViewBag.wedding.Wedder2's Wedding</h1>
+    <h3>Date: @ViewBag.wedding.WeddingDate</h3>
+    <h3>Guests:</h3>
+    @foreach(var guest in @ViewBag.guests){
+        <p>@guest.User.FirstName @guest.User.LastName</p>
+    }
+
+    <a asp-area="" asp-controller="Home" asp-action="Index"><button>Go back</button></a>
+</div>
