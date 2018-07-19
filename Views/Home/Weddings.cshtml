@@ -23,13 +23,12 @@
                     int registryId = 0;
                     
                     @foreach(var uw in @ViewBag.userWedd){
-                        @if(uw.Wedding == @wed){
+                        @if(uw.Wedding == @wed && @ViewBag.user == uw.User){
                             contains = true;
                             registryId = uw.UserWeddingID;
                             break;
                         }
                     }
-
                     @if(contains){
                         <td><a asp-area="" asp-controller="Wedding" asp-action="UNRSVP" asp-route-id="@registryId">Un-RSVP</a></td>
                     }
